@@ -1,8 +1,11 @@
 package com.example.blood_donation.controller;
 
+import com.example.blood_donation.dto.LoginRequest;
+import com.example.blood_donation.dto.LoginResponse;
 import com.example.blood_donation.entity.Admin;
 import com.example.blood_donation.service.AdminService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -39,5 +42,14 @@ public class AdminController {
     public ResponseEntity<Void> deleteAdmin(@PathVariable Integer id) {
         adminService.deleteAdmin(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<?> login(@RequestBody LoginRequest request) {
+        LoginResponse response = adminService.login(request.getEmail(), request.getPassword());
+        if (response == null) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid email or password");
+        }
+        return ResponseEntity.ok(response);
     }
 }

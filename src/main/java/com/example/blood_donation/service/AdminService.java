@@ -1,18 +1,40 @@
 package com.example.blood_donation.service;
 
+import com.example.blood_donation.dto.LoginResponse;
 import com.example.blood_donation.entity.Admin;
 import com.example.blood_donation.exception.ResourceNotFoundException;
 import com.example.blood_donation.repository.AdminRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 @Service
-@RequiredArgsConstructor
 public class AdminService {
 
     private final AdminRepository adminRepository;
+    private final PasswordEncoder passwordEncoder;
+
+    @Autowired
+    public AdminService(AdminRepository adminRepository, PasswordEncoder passwordEncoder) {
+        this.adminRepository = adminRepository;
+        this.passwordEncoder = passwordEncoder;
+    }
+
+    public LoginResponse login(String email, String rawPassword) {
+        Optional<Admin> adminOpt = adminRepository.findByEmail(email);
+        if (adminOpt.isEmpty()) return null;
+
+        Admin admin = adminOpt.get();
+        if (!passwordEncoder.matches(rawPassword, admin.getPassword())) return null;
+
+        String token = UUID.randomUUID().toString(); // hoặc JWT
+        return new LoginResponse(token, "Manager", null, null, admin);
+    }
 
     public List<Admin> getAllAdmins() {
         return adminRepository.findAll();

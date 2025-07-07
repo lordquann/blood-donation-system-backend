@@ -99,18 +99,42 @@ public class MemberService {
     public Member updateMember(Integer id, Member updatedMember) {
         return memberRepository.findById(id)
                 .map(existingMember -> {
-                    existingMember.setFullName(updatedMember.getFullName());
-                    existingMember.setDob(updatedMember.getDob());
-                    existingMember.setGender(updatedMember.getGender());
-                    existingMember.setBloodType(updatedMember.getBloodType());
-                    existingMember.setPhone(updatedMember.getPhone());
-                    existingMember.setEmail(updatedMember.getEmail());
-                    existingMember.setPassword(updatedMember.getPassword());
-                    existingMember.setAddress(updatedMember.getAddress());
-                    existingMember.setLatitude(updatedMember.getLatitude());
-                    existingMember.setLongitude(updatedMember.getLongitude());
-                    existingMember.setLastDonation(updatedMember.getLastDonation());
-                    existingMember.setHealthNotes(updatedMember.getHealthNotes());
+                    if (updatedMember.getFullName() != null && !updatedMember.getFullName().isBlank()) {
+                        existingMember.setFullName(updatedMember.getFullName());
+                    }
+                    if (updatedMember.getDob() != null) {
+                        existingMember.setDob(updatedMember.getDob());
+                    }
+                    if (updatedMember.getGender() != null) {
+                        existingMember.setGender(updatedMember.getGender());
+                    }
+                    if (updatedMember.getBloodType() != null && !updatedMember.getBloodType().isBlank()) {
+                        existingMember.setBloodType(updatedMember.getBloodType());
+                    }
+                    if (updatedMember.getPhone() != null && !updatedMember.getPhone().isBlank()) {
+                        existingMember.setPhone(updatedMember.getPhone());
+                    }
+                    if (updatedMember.getEmail() != null && !updatedMember.getEmail().isBlank()) {
+                        existingMember.setEmail(updatedMember.getEmail());
+                    }
+                    if (updatedMember.getPassword() != null && !updatedMember.getPassword().isBlank()) {
+                        existingMember.setPassword(updatedMember.getPassword());
+                    }
+                    if (updatedMember.getAddress() != null && !updatedMember.getAddress().isBlank()) {
+                        existingMember.setAddress(updatedMember.getAddress());
+                    }
+                    if (updatedMember.getLatitude() != null) {
+                        existingMember.setLatitude(updatedMember.getLatitude());
+                    }
+                    if (updatedMember.getLongitude() != null) {
+                        existingMember.setLongitude(updatedMember.getLongitude());
+                    }
+                    if (updatedMember.getLastDonation() != null) {
+                        existingMember.setLastDonation(updatedMember.getLastDonation());
+                    }
+                    if (updatedMember.getHealthNotes() != null && !updatedMember.getHealthNotes().isBlank()) {
+                        existingMember.setHealthNotes(updatedMember.getHealthNotes());
+                    }
                     return memberRepository.save(existingMember);
                 })
                 .orElseThrow(() -> new RuntimeException("Member not found with id " + id));

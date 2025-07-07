@@ -29,8 +29,12 @@ public class BloodComponentService {
 
     public BloodComponent updateBloodComponent(Integer id, BloodComponent updatedBloodComponent) {
         BloodComponent bloodComponent = getBloodComponentById(id);
-        bloodComponent.setName(updatedBloodComponent.getName());
-        bloodComponent.setDescription(updatedBloodComponent.getDescription());
+        if (updatedBloodComponent.getName() != null && !updatedBloodComponent.getName().isBlank()) {
+            bloodComponent.setName(updatedBloodComponent.getName());
+        }
+        if (updatedBloodComponent.getDescription() != null && !updatedBloodComponent.getDescription().isBlank()) {
+            bloodComponent.setDescription(updatedBloodComponent.getDescription());
+        }
         return bloodComponentRepository.save(bloodComponent);
     }
 

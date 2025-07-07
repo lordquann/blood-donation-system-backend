@@ -29,11 +29,21 @@ public class DonationService {
 
     public Donation updateDonation(Integer id, Donation updatedDonation) {
         Donation donation = getDonationById(id);
-        donation.setMember(updatedDonation.getMember());
-        donation.setLocation(updatedDonation.getLocation());
-        donation.setDate(updatedDonation.getDate());
-        donation.setVolumeMl(updatedDonation.getVolumeMl());
-        donation.setNotes(updatedDonation.getNotes());
+        if (updatedDonation.getMember() != null) {
+            donation.setMember(updatedDonation.getMember());
+        }
+        if (updatedDonation.getLocation() != null) {
+            donation.setLocation(updatedDonation.getLocation());
+        }
+        if (updatedDonation.getDate() != null) {
+            donation.setDate(updatedDonation.getDate());
+        }
+        if (updatedDonation.getVolumeMl() != null) {
+            donation.setVolumeMl(updatedDonation.getVolumeMl());
+        }
+        if (updatedDonation.getNotes() != null && !updatedDonation.getNotes().isBlank()) {
+            donation.setNotes(updatedDonation.getNotes());
+        }
         return donationRepository.save(donation);
     }
 

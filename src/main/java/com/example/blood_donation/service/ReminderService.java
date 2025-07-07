@@ -29,10 +29,18 @@ public class ReminderService {
 
     public Reminder updateReminder(Integer id, Reminder updatedReminder) {
         Reminder reminder = getReminderById(id);
-        reminder.setMember(updatedReminder.getMember());
-        reminder.setMessage(updatedReminder.getMessage());
-        reminder.setReminderDate(updatedReminder.getReminderDate());
-        reminder.setStatus(updatedReminder.getStatus());
+        if (updatedReminder.getMember() != null) {
+            reminder.setMember(updatedReminder.getMember());
+        }
+        if (updatedReminder.getMessage() != null && !updatedReminder.getMessage().isBlank()) {
+            reminder.setMessage(updatedReminder.getMessage());
+        }
+        if (updatedReminder.getReminderDate() != null) {
+            reminder.setReminderDate(updatedReminder.getReminderDate());
+        }
+        if (updatedReminder.getStatus() != null) {
+            reminder.setStatus(updatedReminder.getStatus());
+        }
         return reminderRepository.save(reminder);
     }
 

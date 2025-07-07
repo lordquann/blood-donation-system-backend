@@ -29,11 +29,21 @@ public class LocationService {
 
     public Location updateLocation(Integer id, Location updatedLocation) {
         Location location = getLocationById(id);
-        location.setName(updatedLocation.getName());
-        location.setAddress(updatedLocation.getAddress());
-        location.setCity(updatedLocation.getCity());
-        location.setLatitude(updatedLocation.getLatitude());
-        location.setLongitude(updatedLocation.getLongitude());
+        if (updatedLocation.getName() != null && !updatedLocation.getName().isBlank()) {
+            location.setName(updatedLocation.getName());
+        }
+        if (updatedLocation.getAddress() != null && !updatedLocation.getAddress().isBlank()) {
+            location.setAddress(updatedLocation.getAddress());
+        }
+        if (updatedLocation.getCity() != null && !updatedLocation.getCity().isBlank()) {
+            location.setCity(updatedLocation.getCity());
+        }
+        if (updatedLocation.getLatitude() != null) {
+            location.setLatitude(updatedLocation.getLatitude());
+        }
+        if (updatedLocation.getLongitude() != null) {
+            location.setLongitude(updatedLocation.getLongitude());
+        }
         return locationRepository.save(location);
     }
 

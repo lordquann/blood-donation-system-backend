@@ -1,6 +1,6 @@
 package com.example.blood_donation.service;
 
-import com.example.blood_donation.entity.DonationRequestProcess;
+import com.example.blood_donation.entity.BloodRequestProcess;
 import com.example.blood_donation.exception.ResourceNotFoundException;
 import com.example.blood_donation.repository.DonationRequestProcessRepository;
 import lombok.RequiredArgsConstructor;
@@ -14,26 +14,36 @@ public class DonationRequestProcessService {
 
     private final DonationRequestProcessRepository donationRequestProcessRepository;
 
-    public List<DonationRequestProcess> getAllDonationRequestProcesses() {
+    public List<BloodRequestProcess> getAllDonationRequestProcesses() {
         return donationRequestProcessRepository.findAll();
     }
 
-    public DonationRequestProcess getDonationRequestProcessById(Integer id) {
+    public BloodRequestProcess getDonationRequestProcessById(Integer id) {
         return donationRequestProcessRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("DonationRequestProcess not found with id " + id));
+                .orElseThrow(() -> new ResourceNotFoundException("BloodRequestProcess not found with id " + id));
     }
 
-    public DonationRequestProcess createDonationRequestProcess(DonationRequestProcess donationRequestProcess) {
-        return donationRequestProcessRepository.save(donationRequestProcess);
+    public BloodRequestProcess createDonationRequestProcess(BloodRequestProcess bloodRequestProcess) {
+        return donationRequestProcessRepository.save(bloodRequestProcess);
     }
 
-    public DonationRequestProcess updateDonationRequestProcess(Integer id, DonationRequestProcess updatedProcess) {
-        DonationRequestProcess process = getDonationRequestProcessById(id);
-        process.setBloodRequest(updatedProcess.getBloodRequest());
-        process.setMatchedMember(updatedProcess.getMatchedMember());
-        process.setAssignedUnit(updatedProcess.getAssignedUnit());
-        process.setStatus(updatedProcess.getStatus());
-        process.setUpdatedAt(updatedProcess.getUpdatedAt());
+    public BloodRequestProcess updateDonationRequestProcess(Integer id, BloodRequestProcess updatedProcess) {
+        BloodRequestProcess process = getDonationRequestProcessById(id);
+        if (updatedProcess.getBloodRequest() != null) {
+            process.setBloodRequest(updatedProcess.getBloodRequest());
+        }
+        if (updatedProcess.getMatchedMember() != null) {
+            process.setMatchedMember(updatedProcess.getMatchedMember());
+        }
+        if (updatedProcess.getAssignedUnit() != null) {
+            process.setAssignedUnit(updatedProcess.getAssignedUnit());
+        }
+        if (updatedProcess.getStatus() != null) {
+            process.setStatus(updatedProcess.getStatus());
+        }
+        if (updatedProcess.getUpdatedAt() != null) {
+            process.setUpdatedAt(updatedProcess.getUpdatedAt());
+        }
         return donationRequestProcessRepository.save(process);
     }
 

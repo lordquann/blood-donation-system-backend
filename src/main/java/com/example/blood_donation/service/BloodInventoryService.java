@@ -29,11 +29,21 @@ public class BloodInventoryService {
 
     public BloodInventory updateBloodInventory(Integer id, BloodInventory updatedBloodInventory) {
         BloodInventory bloodInventory = getBloodInventoryById(id);
-        bloodInventory.setLocation(updatedBloodInventory.getLocation());
-        bloodInventory.setBloodType(updatedBloodInventory.getBloodType());
-        bloodInventory.setComponent(updatedBloodInventory.getComponent());
-        bloodInventory.setUnitCount(updatedBloodInventory.getUnitCount());
-        bloodInventory.setLastUpdated(updatedBloodInventory.getLastUpdated());
+        if (updatedBloodInventory.getLocation() != null) {
+            bloodInventory.setLocation(updatedBloodInventory.getLocation());
+        }
+        if (updatedBloodInventory.getBloodType() != null) {
+            bloodInventory.setBloodType(updatedBloodInventory.getBloodType());
+        }
+        if (updatedBloodInventory.getComponent() != null) {
+            bloodInventory.setComponent(updatedBloodInventory.getComponent());
+        }
+        if (updatedBloodInventory.getUnitCount() != null) {
+            bloodInventory.setUnitCount(updatedBloodInventory.getUnitCount());
+        }
+        if (updatedBloodInventory.getLastUpdated() != null) {
+            bloodInventory.setLastUpdated(updatedBloodInventory.getLastUpdated());
+        }
         return bloodInventoryRepository.save(bloodInventory);
     }
 

@@ -8,8 +8,8 @@ import java.time.LocalDateTime;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "donation_request_process")
-public class DonationRequestProcess {
+@Table(name = "blood_request_process")
+public class BloodRequestProcess {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

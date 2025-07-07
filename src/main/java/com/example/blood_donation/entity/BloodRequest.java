@@ -39,7 +39,7 @@ public class BloodRequest {
 
     private LocalDate neededDate;
 
-    private Boolean isEmergency;
+    private Integer isEmergency;
 
     @Column(columnDefinition = "TEXT")
     private String note;

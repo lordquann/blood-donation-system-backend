@@ -1,6 +1,6 @@
 package com.example.blood_donation.controller;
 
-import com.example.blood_donation.entity.DonationRequestProcess;
+import com.example.blood_donation.entity.BloodRequestProcess;
 import com.example.blood_donation.service.DonationRequestProcessService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -16,23 +16,23 @@ public class DonationRequestProcessController {
     private final DonationRequestProcessService donationRequestProcessService;
 
     @GetMapping
-    public List<DonationRequestProcess> getAllDonationRequestProcesses() {
+    public List<BloodRequestProcess> getAllDonationRequestProcesses() {
         return donationRequestProcessService.getAllDonationRequestProcesses();
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<DonationRequestProcess> getDonationRequestProcessById(@PathVariable Integer id) {
+    public ResponseEntity<BloodRequestProcess> getDonationRequestProcessById(@PathVariable Integer id) {
         return ResponseEntity.ok(donationRequestProcessService.getDonationRequestProcessById(id));
     }
 
     @PostMapping
-    public ResponseEntity<DonationRequestProcess> createDonationRequestProcess(@RequestBody DonationRequestProcess donationRequestProcess) {
-        return ResponseEntity.ok(donationRequestProcessService.createDonationRequestProcess(donationRequestProcess));
+    public ResponseEntity<BloodRequestProcess> createDonationRequestProcess(@RequestBody BloodRequestProcess bloodRequestProcess) {
+        return ResponseEntity.ok(donationRequestProcessService.createDonationRequestProcess(bloodRequestProcess));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<DonationRequestProcess> updateDonationRequestProcess(@PathVariable Integer id, @RequestBody DonationRequestProcess donationRequestProcess) {
-        return ResponseEntity.ok(donationRequestProcessService.updateDonationRequestProcess(id, donationRequestProcess));
+    public ResponseEntity<BloodRequestProcess> updateDonationRequestProcess(@PathVariable Integer id, @RequestBody BloodRequestProcess bloodRequestProcess) {
+        return ResponseEntity.ok(donationRequestProcessService.updateDonationRequestProcess(id, bloodRequestProcess));
     }
 
     @DeleteMapping("/{id}")

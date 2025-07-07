@@ -29,18 +29,42 @@ public class BloodRequestService {
 
     public BloodRequest updateBloodRequest(Integer id, BloodRequest updatedBloodRequest) {
         BloodRequest bloodRequest = getBloodRequestById(id);
-        bloodRequest.setMember(updatedBloodRequest.getMember());
-        bloodRequest.setFullName(updatedBloodRequest.getFullName());
-        bloodRequest.setBloodType(updatedBloodRequest.getBloodType());
-        bloodRequest.setComponent(updatedBloodRequest.getComponent());
-        bloodRequest.setHospital(updatedBloodRequest.getHospital());
-        bloodRequest.setContact(updatedBloodRequest.getContact());
-        bloodRequest.setLatitude(updatedBloodRequest.getLatitude());
-        bloodRequest.setLongitude(updatedBloodRequest.getLongitude());
-        bloodRequest.setNeededDate(updatedBloodRequest.getNeededDate());
-        bloodRequest.setIsEmergency(updatedBloodRequest.getIsEmergency());
-        bloodRequest.setNote(updatedBloodRequest.getNote());
-        bloodRequest.setCreatedAt(updatedBloodRequest.getCreatedAt());
+        if (updatedBloodRequest.getMember() != null) {
+            bloodRequest.setMember(updatedBloodRequest.getMember());
+        }
+        if (updatedBloodRequest.getFullName() != null && !updatedBloodRequest.getFullName().isBlank()) {
+            bloodRequest.setFullName(updatedBloodRequest.getFullName());
+        }
+        if (updatedBloodRequest.getBloodType() != null) {
+            bloodRequest.setBloodType(updatedBloodRequest.getBloodType());
+        }
+        if (updatedBloodRequest.getComponent() != null) {
+            bloodRequest.setComponent(updatedBloodRequest.getComponent());
+        }
+        if (updatedBloodRequest.getHospital() != null && !updatedBloodRequest.getHospital().isBlank()) {
+            bloodRequest.setHospital(updatedBloodRequest.getHospital());
+        }
+        if (updatedBloodRequest.getContact() != null && !updatedBloodRequest.getContact().isBlank()) {
+            bloodRequest.setContact(updatedBloodRequest.getContact());
+        }
+        if (updatedBloodRequest.getLatitude() != null) {
+            bloodRequest.setLatitude(updatedBloodRequest.getLatitude());
+        }
+        if (updatedBloodRequest.getLongitude() != null) {
+            bloodRequest.setLongitude(updatedBloodRequest.getLongitude());
+        }
+        if (updatedBloodRequest.getNeededDate() != null) {
+            bloodRequest.setNeededDate(updatedBloodRequest.getNeededDate());
+        }
+        if (updatedBloodRequest.getIsEmergency() != null) {
+            bloodRequest.setIsEmergency(updatedBloodRequest.getIsEmergency());
+        }
+        if (updatedBloodRequest.getNote() != null && !updatedBloodRequest.getNote().isBlank()) {
+            bloodRequest.setNote(updatedBloodRequest.getNote());
+        }
+        if (updatedBloodRequest.getCreatedAt() != null) {
+            bloodRequest.setCreatedAt(updatedBloodRequest.getCreatedAt());
+        }
         return bloodRequestRepository.save(bloodRequest);
     }
 

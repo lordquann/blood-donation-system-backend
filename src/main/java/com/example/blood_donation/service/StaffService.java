@@ -51,12 +51,24 @@ public class StaffService {
 
     public Staff updateStaff(Integer id, Staff updatedStaff) {
         Staff staff = getStaffById(id);
-        staff.setFullName(updatedStaff.getFullName());
-        staff.setUsername(updatedStaff.getUsername());
-        staff.setPassword(updatedStaff.getPassword());
-        staff.setEmail(updatedStaff.getEmail());
-        staff.setPhone(updatedStaff.getPhone());
-        staff.setRole(updatedStaff.getRole());
+        if (updatedStaff.getFullName() != null && !updatedStaff.getFullName().isBlank()) {
+            staff.setFullName(updatedStaff.getFullName());
+        }
+        if (updatedStaff.getUsername() != null && !updatedStaff.getUsername().isBlank()) {
+            staff.setUsername(updatedStaff.getUsername());
+        }
+        if (updatedStaff.getPassword() != null && !updatedStaff.getPassword().isBlank()) {
+            staff.setPassword(updatedStaff.getPassword());
+        }
+        if (updatedStaff.getEmail() != null && !updatedStaff.getEmail().isBlank()) {
+            staff.setEmail(updatedStaff.getEmail());
+        }
+        if (updatedStaff.getPhone() != null && !updatedStaff.getPhone().isBlank()) {
+            staff.setPhone(updatedStaff.getPhone());
+        }
+        if (updatedStaff.getRole() != null) {
+            staff.setRole(updatedStaff.getRole());
+        }
         return staffRepository.save(staff);
     }
 

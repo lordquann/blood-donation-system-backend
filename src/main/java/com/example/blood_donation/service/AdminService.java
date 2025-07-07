@@ -51,10 +51,18 @@ public class AdminService {
 
     public Admin updateAdmin(Integer id, Admin updatedAdmin) {
         Admin admin = getAdminById(id);
-        admin.setUsername(updatedAdmin.getUsername());
-        admin.setPassword(updatedAdmin.getPassword());
-        admin.setEmail(updatedAdmin.getEmail());
-        admin.setRole(updatedAdmin.getRole());
+        if (updatedAdmin.getUsername() != null ) {
+            admin.setUsername(updatedAdmin.getUsername());
+        }
+        if (updatedAdmin.getPassword() != null ) {
+            admin.setPassword(updatedAdmin.getPassword());
+        }
+        if (updatedAdmin.getEmail() != null ) {
+            admin.setEmail(updatedAdmin.getEmail());
+        }
+        if (updatedAdmin.getRole() != null ) {
+            admin.setRole(updatedAdmin.getRole());
+        }
         return adminRepository.save(admin);
     }
 

@@ -29,13 +29,27 @@ public class BloodUnitService {
 
     public BloodUnit updateBloodUnit(Integer id, BloodUnit updatedBloodUnit) {
         BloodUnit bloodUnit = getBloodUnitById(id);
-        bloodUnit.setDonation(updatedBloodUnit.getDonation());
-        bloodUnit.setComponent(updatedBloodUnit.getComponent());
-        bloodUnit.setBloodType(updatedBloodUnit.getBloodType());
-        bloodUnit.setVolumeMl(updatedBloodUnit.getVolumeMl());
-        bloodUnit.setLocation(updatedBloodUnit.getLocation());
-        bloodUnit.setStatus(updatedBloodUnit.getStatus());
-        bloodUnit.setCreatedAt(updatedBloodUnit.getCreatedAt());
+        if (updatedBloodUnit.getDonation() != null) {
+            bloodUnit.setDonation(updatedBloodUnit.getDonation());
+        }
+        if (updatedBloodUnit.getComponent() != null) {
+            bloodUnit.setComponent(updatedBloodUnit.getComponent());
+        }
+        if (updatedBloodUnit.getBloodType() != null) {
+            bloodUnit.setBloodType(updatedBloodUnit.getBloodType());
+        }
+        if (updatedBloodUnit.getVolumeMl() != null) {
+            bloodUnit.setVolumeMl(updatedBloodUnit.getVolumeMl());
+        }
+        if (updatedBloodUnit.getLocation() != null) {
+            bloodUnit.setLocation(updatedBloodUnit.getLocation());
+        }
+        if (updatedBloodUnit.getStatus() != null ) {
+            bloodUnit.setStatus(updatedBloodUnit.getStatus());
+        }
+        if (updatedBloodUnit.getCreatedAt() != null) {
+            bloodUnit.setCreatedAt(updatedBloodUnit.getCreatedAt());
+        }
         return bloodUnitRepository.save(bloodUnit);
     }
 

@@ -25,9 +25,9 @@ public class Donation {
 
     private LocalDate date;
 
-    private Integer volumeMl;
-
     @Column(columnDefinition = "TEXT")
     private String notes;
+
+    private String status;
 }
 

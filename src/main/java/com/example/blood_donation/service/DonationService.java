@@ -38,11 +38,11 @@ public class DonationService {
         if (updatedDonation.getDate() != null) {
             donation.setDate(updatedDonation.getDate());
         }
-        if (updatedDonation.getVolumeMl() != null) {
-            donation.setVolumeMl(updatedDonation.getVolumeMl());
-        }
         if (updatedDonation.getNotes() != null && !updatedDonation.getNotes().isBlank()) {
             donation.setNotes(updatedDonation.getNotes());
+        }
+        if (updatedDonation.getStatus() != null) {
+            donation.setStatus(updatedDonation.getStatus());
         }
         return donationRepository.save(donation);
     }

@@ -35,9 +35,6 @@ public class BloodRequestProcessService {
         if (updatedProcess.getMatchedMember() != null) {
             process.setMatchedMember(updatedProcess.getMatchedMember());
         }
-        if (updatedProcess.getAssignedUnit() != null) {
-            process.setAssignedUnit(updatedProcess.getAssignedUnit());
-        }
         if (updatedProcess.getStatus() != null) {
             process.setStatus(updatedProcess.getStatus());
         }

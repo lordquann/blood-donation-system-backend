@@ -23,10 +23,6 @@ public class BloodRequestProcess {
     @JoinColumn(name = "matched_member_id")
     private Member matchedMember;
 
-    @ManyToOne
-    @JoinColumn(name = "assigned_unit_id")
-    private BloodUnit assignedUnit;
-
     @Enumerated(EnumType.STRING)
     private Status status;
 

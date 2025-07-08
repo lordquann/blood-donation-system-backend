@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/donation-request-process")
+@RequestMapping("/api/blood-request-process")
 @RequiredArgsConstructor
 public class BloodRequestProcessController {
 

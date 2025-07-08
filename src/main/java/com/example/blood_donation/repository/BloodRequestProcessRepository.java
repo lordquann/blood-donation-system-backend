@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface DonationRequestProcessRepository extends JpaRepository<BloodRequestProcess, Integer> {
+public interface BloodRequestProcessRepository extends JpaRepository<BloodRequestProcess, Integer> {
     List<BloodRequestProcess> findByStatus(BloodRequestProcess.Status status);
 }
 

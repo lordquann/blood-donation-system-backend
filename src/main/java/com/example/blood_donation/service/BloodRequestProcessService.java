@@ -2,7 +2,7 @@ package com.example.blood_donation.service;
 
 import com.example.blood_donation.entity.BloodRequestProcess;
 import com.example.blood_donation.exception.ResourceNotFoundException;
-import com.example.blood_donation.repository.DonationRequestProcessRepository;
+import com.example.blood_donation.repository.BloodRequestProcessRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -10,21 +10,21 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class DonationRequestProcessService {
+public class BloodRequestProcessService {
 
-    private final DonationRequestProcessRepository donationRequestProcessRepository;
+    private final BloodRequestProcessRepository bloodRequestProcessRepository;
 
     public List<BloodRequestProcess> getAllDonationRequestProcesses() {
-        return donationRequestProcessRepository.findAll();
+        return bloodRequestProcessRepository.findAll();
     }
 
     public BloodRequestProcess getDonationRequestProcessById(Integer id) {
-        return donationRequestProcessRepository.findById(id)
+        return bloodRequestProcessRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("BloodRequestProcess not found with id " + id));
     }
 
     public BloodRequestProcess createDonationRequestProcess(BloodRequestProcess bloodRequestProcess) {
-        return donationRequestProcessRepository.save(bloodRequestProcess);
+        return bloodRequestProcessRepository.save(bloodRequestProcess);
     }
 
     public BloodRequestProcess updateDonationRequestProcess(Integer id, BloodRequestProcess updatedProcess) {
@@ -44,10 +44,10 @@ public class DonationRequestProcessService {
         if (updatedProcess.getUpdatedAt() != null) {
             process.setUpdatedAt(updatedProcess.getUpdatedAt());
         }
-        return donationRequestProcessRepository.save(process);
+        return bloodRequestProcessRepository.save(process);
     }
 
     public void deleteDonationRequestProcess(Integer id) {
-        donationRequestProcessRepository.deleteById(id);
+        bloodRequestProcessRepository.deleteById(id);
     }
 }

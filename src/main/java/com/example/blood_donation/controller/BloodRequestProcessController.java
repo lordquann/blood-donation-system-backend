@@ -16,28 +16,28 @@ public class BloodRequestProcessController {
     private final BloodRequestProcessService bloodRequestProcessService;
 
     @GetMapping
-    public List<BloodRequestProcess> getAllDonationRequestProcesses() {
-        return bloodRequestProcessService.getAllDonationRequestProcesses();
+    public List<BloodRequestProcess> getAllBloodRequestProcesses() {
+        return bloodRequestProcessService.getAllBloodRequestProcesses();
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<BloodRequestProcess> getDonationRequestProcessById(@PathVariable Integer id) {
-        return ResponseEntity.ok(bloodRequestProcessService.getDonationRequestProcessById(id));
+    public ResponseEntity<BloodRequestProcess> getBloodRequestProcessById(@PathVariable Integer id) {
+        return ResponseEntity.ok(bloodRequestProcessService.getBloodRequestProcessById(id));
     }
 
     @PostMapping
-    public ResponseEntity<BloodRequestProcess> createDonationRequestProcess(@RequestBody BloodRequestProcess bloodRequestProcess) {
-        return ResponseEntity.ok(bloodRequestProcessService.createDonationRequestProcess(bloodRequestProcess));
+    public ResponseEntity<BloodRequestProcess> createBloodRequestProcess(@RequestBody BloodRequestProcess bloodRequestProcess) {
+        return ResponseEntity.ok(bloodRequestProcessService.createBloodRequestProcess(bloodRequestProcess));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<BloodRequestProcess> updateDonationRequestProcess(@PathVariable Integer id, @RequestBody BloodRequestProcess bloodRequestProcess) {
-        return ResponseEntity.ok(bloodRequestProcessService.updateDonationRequestProcess(id, bloodRequestProcess));
+    public ResponseEntity<BloodRequestProcess> updateBloodRequestProcess(@PathVariable Integer id, @RequestBody BloodRequestProcess bloodRequestProcess) {
+        return ResponseEntity.ok(bloodRequestProcessService.updateBloodRequestProcess(id, bloodRequestProcess));
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteDonationRequestProcess(@PathVariable Integer id) {
-        bloodRequestProcessService.deleteDonationRequestProcess(id);
+    public ResponseEntity<Void> deleteBloodRequestProcess(@PathVariable Integer id) {
+        bloodRequestProcessService.deleteBloodRequestProcess(id);
         return ResponseEntity.noContent().build();
     }
 }

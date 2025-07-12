@@ -4,6 +4,7 @@ import com.example.blood_donation.entity.Donation;
 import com.example.blood_donation.exception.ResourceNotFoundException;
 import com.example.blood_donation.repository.DonationRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,6 +14,14 @@ import java.util.List;
 public class DonationService {
 
     private final DonationRepository donationRepository;
+
+    private final EmailService emailService;
+
+    @Autowired
+    public DonationService(EmailService emailService, DonationRepository donationRepository) {
+        this.emailService = emailService;
+        this.donationRepository = donationRepository;
+    }
 
     public List<Donation> getAllDonations() {
         return donationRepository.findAll();
@@ -29,6 +38,7 @@ public class DonationService {
 
     public Donation updateDonation(Integer id, Donation updatedDonation) {
         Donation donation = getDonationById(id);
+
         if (updatedDonation.getMember() != null) {
             donation.setMember(updatedDonation.getMember());
         }
@@ -41,10 +51,25 @@ public class DonationService {
         if (updatedDonation.getNotes() != null && !updatedDonation.getNotes().isBlank()) {
             donation.setNotes(updatedDonation.getNotes());
         }
+        // Kiểm tra nếu status là Approved
+        boolean isApprovedNow = false;
         if (updatedDonation.getStatus() != null) {
             donation.setStatus(updatedDonation.getStatus());
+            if ("Approved".equalsIgnoreCase(updatedDonation.getStatus())) {
+                isApprovedNow = true;
+            }
         }
-        return donationRepository.save(donation);
+        Donation saved = donationRepository.save(donation);
+        // Gửi email sau khi lưu thành công và status là Approved
+        if (isApprovedNow) {
+            String email = donation.getMember().getEmail();
+            emailService.sendApprovalEmail(
+                    email,
+                    "Lịch hiến máu đã được phê duyệt",
+                    "Chào bạn,\n\nLịch hiến máu của bạn đã được phê duyệt. Vui lòng đến đúng địa điểm và thời gian đã đăng ký.\n\nTrân trọng,\nĐội ngũ Hiến Máu"
+            );
+        }
+        return saved;
     }
 
     public void deleteDonation(Integer id) {
